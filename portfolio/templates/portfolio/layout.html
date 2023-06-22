@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Portfolio django</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'portfolio/css/layout.css' %}">
+</head>
+
+<body>
+    <header>
+        <div>Título</div>
+        <nav>
+            <a href="{% url 'portfolio:index' %}">Home</a>
+            <a href="{% url 'portfolio:discoparty' %}">Festa</a>
+            <a href="{% url 'portfolio:random' %}">Random</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    <footer>Univeridade Lusófona, 2023</footer>
+</body>
+
+</html>
