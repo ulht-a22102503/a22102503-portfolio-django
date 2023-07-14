@@ -7,6 +7,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'portfolio/css/layout.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body>
@@ -14,6 +15,7 @@
         <div>Título</div>
         <nav>
             <a href="{% url 'portfolio:index' %}">Home</a>
+            <a href="{% url 'portfolio:blog_home' %}">Blog</a>
             <a href="{% url 'portfolio:discoparty' %}">Festa</a>
             <a href="{% url 'portfolio:random' %}">Random</a>
         </nav>
