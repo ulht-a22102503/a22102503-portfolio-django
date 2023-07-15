@@ -7,6 +7,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'portfolio/css/layout.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -16,7 +17,18 @@
         <nav>
             <a href="{% url 'portfolio:index' %}">Home</a>
             <a href="{% url 'portfolio:blog_home' %}">Blog</a>
-            <a href="{% url 'portfolio:discoparty' %}">Festa</a>
+            <div class="dropdown">
+                <button class="dropbtn">
+                    Arquivo Labs
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="{% url 'portfolio:pwlab1' %}">Lab1</a>
+                    <a href="{% url 'portfolio:pwlab2' %}">Lab2</a>
+                    <a href="{% url 'portfolio:pwlab3' %}">Lab3</a>
+                    <a href="{% url 'portfolio:pwlab4' %}">Lab4</a>
+                </div>
+            </div>
         </nav>
     </header>
 

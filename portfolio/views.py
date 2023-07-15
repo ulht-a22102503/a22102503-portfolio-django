@@ -42,20 +42,15 @@ def blog_remove_post_view(request, post_id):
     return HttpResponseRedirect(reverse('portfolio:blog_home'))
 
 
+#Labs 1-4
+def pwlab1_view(request):
+	return render(request, 'portfolio/labs/lab1.html')
 
+def pwlab2_view(request):
+	return render(request, 'portfolio/labs/lab2.html')
 
+def pwlab3_view(request):
+	return render(request, 'portfolio/labs/lab3.html')
 
-
-
-
-
-
-
-
-
-
-def discoparty_view(request):
-	return render(request, 'portfolio/discoparty.html')
-
-def random_view(request):
-	return render(request, 'portfolio/random.html')
+def pwlab4_view(request):
+	return render(request, 'portfolio/labs/lab4.html')
