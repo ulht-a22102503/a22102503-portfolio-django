@@ -33,7 +33,7 @@ nav a {
     padding: 20px;
     text-decoration: none;
     font-size: 1rem;
-    color: black;
+    color: white;
 }
 
 .dropdown {
@@ -49,6 +49,7 @@ nav a {
     background-color: inherit;
     font-family: inherit;
     margin: 0;
+    color: white;
 }
 
 nav a:hover,
@@ -86,8 +87,8 @@ nav a:hover,
 
 main {
     height: 85vh;
-    background-color: grey;
     padding: 4em 4em;
+    background-image: url("/static/portfolio/images/bigchungus.jpg");
 }
 
 footer {

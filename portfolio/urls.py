@@ -13,4 +13,5 @@ urlpatterns = [
     path('labs/lab2', views.pwlab2_view, name='pwlab2'),
     path('labs/lab3', views.pwlab3_view, name='pwlab3'),
     path('labs/lab4', views.pwlab4_view, name='pwlab4'),
+    path('contacto/', views.contacto_view, name='contacto'),
 ]

@@ -1,0 +1,12 @@
+{% extends 'portfolio/blog/home.html' %}
+
+{% block main %}
+<h3>Contacto</h3>
+
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Enviar" class="btn btn-success">
+</form>
+{% endblock %}

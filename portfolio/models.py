@@ -13,3 +13,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.titulo[:20]
+
+#Contacto
+class Contacto(models.Model):
+    name = models.CharField(max_length=60)
+    email = models.EmailField(max_length=100)
+    subject = models.CharField(max_length=1024)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.email

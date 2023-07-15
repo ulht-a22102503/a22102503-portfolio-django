@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 from .models import Post
+from .models import Contacto
 
 
 class PostForm(ModelForm):
@@ -13,6 +14,7 @@ class PostForm(ModelForm):
         # através de um dicionario de atributos de formatação (especificação de classes, placeholder, propriedades, etc).
         widgets = {
             'titulo': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'nome do post'}),
+            'descricao': forms.Textarea,
         }
 
 
@@ -22,8 +24,18 @@ class PostForm(ModelForm):
             'descricao': 'Descrição',
         }
 
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contacto
+        fields = '__all__'
 
-       # o dicionário help_texts contém, para um atributo, um texto auxiliar a apresentar por baixo da janela de inserção
-        #help_texts = {
-        #    'prioridade': 'prioridade: baixa=1, media=2, alta=3',
-        #}
+        widgets = {
+            'message': forms.Textarea
+        }
+
+        labels = {
+            'name':'Nome',
+            'email': 'Email de contacto',
+            'subject': 'Assunto',
+            'message': 'Mensagem',
+        }
