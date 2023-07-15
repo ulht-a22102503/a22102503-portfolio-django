@@ -2,7 +2,7 @@
 
 {% block main %}
 <h3>Tarefa</h3>
-<form action="{% url 'portfolio:blog_edit' post_id %}" method="POST">
+<form action="{% url 'portfolio:blog_edit' post_id %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
 
