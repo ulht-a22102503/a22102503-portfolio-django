@@ -10,3 +10,7 @@ EMAIL_SMTP_SERVER = <'your_smtp_server'>
 EMAIL_HOST_USER = <'your_email_server'>
 EMAIL_HOST_PASSWORD = <'your_email_password'>
 ```
+
+Recorre a serviços e framworks como
+- https://open-meteo.com/
+- chart.js

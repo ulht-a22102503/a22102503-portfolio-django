@@ -30,6 +30,7 @@
                 </div>
             </div>
             <a href="{% url 'portfolio:contacto' %}">Contacto</a>
+            <a href="{% url 'portfolio:web_scraping' %}">Web Scraping</a>
         </nav>
     </header>
 
@@ -38,7 +39,19 @@
         {% endblock %}
     </main>
 
-    <footer>Univeridade Lusófona, 2023</footer>
+    <footer id="teehee">Daniel Martins | Univeridade Lusófona, 2023</footer>
 </body>
+
+<script>
+    const date = new Date();
+
+    const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+    const formattedDate = `${date.getDate()} de ${monthNames[date.getMonth()]}, ${date.getFullYear()}`;
+    console.log(formattedDate);
+
+    document.getElementById('teehee').innerText = formattedDate;
+</script>
 
 </html>

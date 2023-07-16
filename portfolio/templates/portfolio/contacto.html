@@ -3,6 +3,20 @@
 {% block main %}
 <h3>Contacto</h3>
 
+<div style="display: flex; justify-content: space-evenly;">
+    <div class="circles" style="background-color: #eb403e; font-size: 5vh;">
+        <a href="https://www.linkedin.com/in/daniel-martins-8bb0011b9/"><i class="fa fa-linkedin"></i></a>
+    </div>
+    <div class="circles" style="background-color: #eb403e; font-size: 3vh; vertical-align:middle;">
+        <i class="fa fa-map-marker"> Lisboa, Portugal</i>
+    </div>
+    <div class="circles" style="background-color: #eb403e; font-size: 5vh;">
+        <a href="https://github.com/RavingSombra"><i class="fa fa-github"></i></a>
+    </div>
+
+
+</div>
+
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

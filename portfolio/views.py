@@ -81,3 +81,7 @@ Mensagem:
     form = ContactForm()
     context = {'form': form}
     return render(request, 'portfolio/contacto.html', context)
+
+#Web Scraping/gráfico
+def web_scraping_view(request):
+    return render(request, 'portfolio/web_scraping.html')
