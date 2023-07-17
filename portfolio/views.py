@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
@@ -14,12 +16,34 @@ from .forms import ContactForm
 def index_view(request):
 	return render(request, 'portfolio/index.html')
 
+#Login/Logout
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('portfolio:index'))
+            
+        else:
+            return render(request, 'portfolio/login.html', {
+                'message': 'Invalid credentials.'
+            })
+
+    return render(request, 'portfolio/login.html')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('portfolio:index'))
 
 # Blog
 def blog_home_view(request):
 	context = {'posts': Post.objects.all()}
 	return render(request, 'portfolio/blog/home.html', context)
 
+@login_required
 def blog_new_post_view(request):
     form = PostForm(request.POST or None, request.FILES)
     if form.is_valid():
@@ -30,6 +54,7 @@ def blog_new_post_view(request):
 
     return render(request, 'portfolio/blog/new.html', context)
 
+@login_required
 def blog_edit_post_view(request, post_id):
     post = Post.objects.get(id=post_id)
     form = PostForm(request.POST or None, instance=post)
@@ -41,7 +66,7 @@ def blog_edit_post_view(request, post_id):
     context = {'form': form, 'post_id': post_id}
     return render(request, 'portfolio/blog/edit.html', context)
 
-
+@login_required
 def blog_remove_post_view(request, post_id):
     Post.objects.get(id=post_id).delete()
     return HttpResponseRedirect(reverse('portfolio:blog_home'))

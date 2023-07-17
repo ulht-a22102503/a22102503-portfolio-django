@@ -12,5 +12,6 @@ EMAIL_HOST_PASSWORD = <'your_email_password'>
 ```
 
 Recorre a serviços e framworks como
+- [django](https://www.djangoproject.com/)
 - https://open-meteo.com/
-- chart.js
+- [chart.js](https://www.chartjs.org/)

@@ -31,6 +31,13 @@
             </div>
             <a href="{% url 'portfolio:contacto' %}">Contacto</a>
             <a href="{% url 'portfolio:web_scraping' %}">Web Scraping</a>
+
+            {% if user.is_authenticated %}
+            <h3>Olá {{ user.username }}</h3>
+            <a href="{% url 'portfolio:logout' %}">Logout</a>
+            {% else %}
+            <a href="{% url 'portfolio:login' %}">Login</a>
+            {% endif %}
         </nav>
     </header>
 
