@@ -23,3 +23,17 @@ class Contacto(models.Model):
 
     def __str__(self):
         return self.email
+
+#Projeto
+class Projeto(models.Model):
+    name = models.CharField(max_length=150)
+    repo_link = models.URLField(max_length=500)
+    descricao = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.name
+
+#Tecnologia
+
+
+#Unidade Curricular

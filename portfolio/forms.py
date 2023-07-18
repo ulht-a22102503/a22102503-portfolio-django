@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post
-from .models import Contacto
+from .models import Post, Projeto, Contacto
 
 
 class PostForm(ModelForm):
@@ -23,6 +22,22 @@ class PostForm(ModelForm):
             'titulo': 'Título',
             'descricao': 'Descrição',
         }
+
+class ProjetoForm(ModelForm):
+    class Meta:
+        model = Projeto
+        fields = '__all__'
+
+        widgets = {
+            'descricao': forms.Textarea
+        }
+
+        labels = {
+            'name':'Nome',
+            'repo_link': 'Link do repositório',
+            'descricao': 'Descrição',
+        }
+
 
 class ContactForm(ModelForm):
     class Meta:

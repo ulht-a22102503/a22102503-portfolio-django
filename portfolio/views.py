@@ -8,9 +8,8 @@ from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Post
-from .forms import PostForm
-from .forms import ContactForm
+from .models import Post, Projeto
+from .forms import PostForm, ProjetoForm, ContactForm
 
 # Create your views here.
 def index_view(request):
@@ -84,6 +83,23 @@ def pwlab3_view(request):
 
 def pwlab4_view(request):
 	return render(request, 'portfolio/labs/lab4.html')
+
+#Projetos
+def projetos_home_view(request):
+    context = {'projetos': Projeto.objects.all()}
+    return render(request, 'portfolio/projetos/home.html', context)
+
+@login_required
+def projetos_new_view(request):
+    form = ProjetoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('portfolio:projetos_home')
+
+    context = {'form': form}
+
+    return render(request, 'portfolio/projetos/new.html', context)
+
 
 #Contacto
 def contacto_view(request):
