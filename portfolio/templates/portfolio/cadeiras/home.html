@@ -1,0 +1,37 @@
+{% extends 'portfolio/index.html' %}
+
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/flex_layout.css' %}">
+{% endblock %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div>
+    <a href="{% url 'portfolio:cadeiras_new' %}" class="btn btn-success btn-block">+ Adicionar Cadeira</a>
+</div>
+
+<div>
+    <a href="{% url 'portfolio:docentes_new' %}" class="btn btn-success btn-block">+ Adicionar Docente</a>
+</div>
+{% endif %}
+
+
+<div class="elements">
+    {% for cadeira in cadeiras %}
+    <div>
+        <div>
+            <p>{{cadeira.name}}</p>
+        </div>
+        <div>
+            <p>Ano: {{cadeira.ano}} ({{cadeira.semestre}}º semestre)</p>
+            <p>ECTS: {{cadeira.ECTS}}</p>
+            <p>Docentes:</p>
+            {% for docente in cadeira.docentes.all %}
+            <p>{{docente.nome}}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

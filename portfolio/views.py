@@ -8,8 +8,8 @@ from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Post, Projeto, Tecnologia, Comentario
-from .forms import PostForm, ComentarioForm, ProjetoForm, TecnologiaForm, ContactForm
+from .models import Post, Projeto, Tecnologia, Comentario, Disciplina, Docente
+from .forms import PostForm, ComentarioForm, ProjetoForm, TecnologiaForm, ContactForm, DocenteForm, DisciplinaForm
 
 # Create your views here.
 def index_view(request):
@@ -92,8 +92,6 @@ def blog_comentario_new_view(request, post_id):
 
     return render(request, 'portfolio/blog/new.html', context)
 
-
-
 #Labs 1-4
 def pwlab1_view(request):
 	return render(request, 'portfolio/labs/lab1.html')
@@ -164,3 +162,30 @@ Mensagem:
     form = ContactForm()
     context = {'form': form}
     return render(request, 'portfolio/contacto.html', context)
+
+#Unidade Curricular
+def cadeiras_home_view(request):
+    context = {'cadeiras': Disciplina.objects.all()}
+    return render(request, 'portfolio/cadeiras/home.html', context)
+
+@login_required
+def cadeiras_new_view(request):
+    form = DisciplinaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('portfolio:cadeiras_home')
+
+    context = {'form': form}
+
+    return render(request, 'portfolio/cadeiras/new.html', context)
+
+@login_required
+def docente_new_view(request):
+    form = DocenteForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('portfolio:cadeiras_home')
+
+    context = {'form': form}
+
+    return render(request, 'portfolio/cadeiras/new_teacher.html', context)

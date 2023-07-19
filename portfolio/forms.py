@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, Comentario, Projeto, Tecnologia, Contacto
+from .models import Post, Comentario, Projeto, Tecnologia, Contacto, Docente, Disciplina
 
 #Blog
 class PostForm(ModelForm):
@@ -85,3 +85,14 @@ class ContactForm(ModelForm):
             'subject': 'Assunto',
             'message': 'Mensagem',
         }
+
+#Unidades curriculares
+class DocenteForm(ModelForm):
+    class Meta:
+            model = Docente
+            fields = '__all__'
+
+class DisciplinaForm(ModelForm):
+    class Meta:
+            model = Disciplina
+            fields = '__all__'

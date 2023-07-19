@@ -57,3 +57,13 @@ class Projeto(models.Model):
 
 
 #Unidade Curricular
+class Docente(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+
+class Disciplina(models.Model):
+    name = models.CharField(max_length=150)
+    ano = models.IntegerField(default=1)
+    semestre = models.IntegerField(default=1)
+    ECTS = models.IntegerField(default=0)
+    docentes = models.ManyToManyField(Docente)
