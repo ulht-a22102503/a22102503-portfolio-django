@@ -2,38 +2,39 @@
 {% load static %}
 
 {% block extra_head %}
-<link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="{% static 'portfolio/css/blog.css' %}">
 {% endblock %}
 
 {% block main %}
 {% for post in posts %}
-<p>
-<h2>{{ post.titulo }}</h2>
-<img src="{{ post.imagem.url }}" height="200px" width="auto"><br>
-<span class="info">
-    (by {{post.autor}} at {{ post.data.day }}/{{ post.data.month }}/{{ post.data.year }})
-</span>
-<br>{{ post.descricao }}
+<div class="post">
+    <h2>{{ post.titulo }}</h2>
+    {% if post.imagem %}
+    <img src="{{ post.imagem.url }}" height="200px" width="auto">
+    {% endif %}
+    <br>
+    <span class="info">
+        (by {{post.autor}} at {{ post.data.day }}/{{ post.data.month }}/{{ post.data.year }})
+    </span>
+    <br>{{ post.descricao }}
 
-<a href="{% url 'portfolio:blog_like' post.id %}">{{ post.like }} <i class="fa fa-thumbs-up"></i></a>
-<a href="{% url 'portfolio:blog_dislike' post.id %}">{{ post.dislike }} <i class="fa fa-thumbs-down"></i></a>
-{% if user.is_authenticated %}
-<a href="{% url 'portfolio:blog_edit' post.id %}" class="btn btn-warning  btn-sm"
-    style="float: right; margin-right: 10px">
-    Editar
-</a>
-{% endif %}
-</p>
-{% for comentario in post.comentario_set.all %}
-{{ comentario.autor }} at {{ comentario.data }} said:
-<br>{{ comentario.texto }}
+    <a href="{% url 'portfolio:blog_like' post.id %}">{{ post.like }} <i class="fa fa-thumbs-up"></i></a>
+    <a href="{% url 'portfolio:blog_dislike' post.id %}">{{ post.dislike }} <i class="fa fa-thumbs-down"></i></a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'portfolio:blog_edit' post.id %}" class="botao uhoh" style="float: right; margin-right: 10px">
+        Editar
+    </a>
+    {% endif %}
+    {% for comentario in post.comentario_set.all %}
+    <div class="comentario">
+        {{ comentario.autor }} at {{ comentario.data }} said:
+        <br>{{ comentario.texto }}
+        {% endfor %}
+    </div>
+    <a href="{% url 'portfolio:blog_comentario_new' post.id %}" class="botao nice">+ Novo Comentário</a>
+</div>
 {% endfor %}
-<a href="{% url 'portfolio:blog_comentario_new' post.id %}" class="btn btn-success btn-block">+ Novo Comentário</a>
-{% endfor %}
 {% if user.is_authenticated %}
-<a href="{% url 'portfolio:blog_new' %}" class="btn btn-success btn-block">+ Novo Post</a>
+<a href="{% url 'portfolio:blog_new' %}" class="botao nice">+ Novo Post</a>
 {% endif %}
 {% endblock %}

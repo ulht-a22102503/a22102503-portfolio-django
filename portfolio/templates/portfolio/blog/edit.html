@@ -6,9 +6,9 @@
     {% csrf_token %}
     {{ form.as_p }}
 
-    <a href="{% url 'portfolio:blog_home' %}" role="button" class="btn btn-warning">Cancelar</a>
-    <input type="submit" value="Gravar" class="btn btn-success">
-    <a href="{% url 'portfolio:blog_remove' post_id %}" role="button" class="btn btn-danger">Apagar</a>
+    <a href="{% url 'portfolio:blog_home' %}" role="button" class="botao uhoh">Cancelar</a>
+    <input type="submit" value="Gravar" class="botao nice">
+    <a href="{% url 'portfolio:blog_remove' post_id %}" role="button" class="botao hellno">Apagar</a>
 </form>
 
 {% endblock %}

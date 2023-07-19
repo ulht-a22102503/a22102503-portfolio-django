@@ -3,7 +3,7 @@
 
 <head>
     <meta charset='utf-8'>
-    <title>Portfolio django</title>
+    <title>Portfolio Daniel Martins</title>
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'portfolio/css/layout.css' %}">
@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <div>Daniel Martins</div>
+        <h2 style="padding-left: 1%;">Daniel Martins</h2>
         <nav>
             <a href="{% url 'portfolio:index' %}">Home</a>
             <a href="{% url 'portfolio:blog_home' %}">Blog</a>
@@ -46,13 +46,15 @@
 
     <main>
         {% block main %}
-        <div>A dreamer is one who can only find his way by moonlight, and his punishment is that he sees the dawn before
-            the rest of the world.</div>
-        <p>Oscar Wilde</p>
+        <div class="frase">
+            <p>A dreamer is one who can only find his way by moonlight, and his punishment is that he sees the dawn
+                before the rest of the world.</p>
+            <p>Oscar Wilde</p>
+        </div>
         {% endblock %}
     </main>
 
-    <footer id="teehee">Daniel Martins | Univeridade Lusófona, 2023</footer>
+    <footer id="teehee">Daniel Martins | Univeridade Lusófona, 2023 | </footer>
 </body>
 
 <script>
@@ -64,7 +66,7 @@
     const formattedDate = `${date.getDate()} de ${monthNames[date.getMonth()]}, ${date.getFullYear()}`;
     console.log(formattedDate);
 
-    document.getElementById('teehee').innerText = formattedDate;
+    document.getElementById('teehee').innerText += formattedDate;
 </script>
 
 </html>
