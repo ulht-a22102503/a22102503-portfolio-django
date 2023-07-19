@@ -1,8 +1,8 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, Projeto, Contacto
+from .models import Post, Comentario, Projeto, Contacto
 
-
+#Blog
 class PostForm(ModelForm):
     class Meta:
         model = Post
@@ -22,6 +22,26 @@ class PostForm(ModelForm):
             'titulo': 'Título',
             'descricao': 'Descrição',
         }
+
+class ComentarioForm(ModelForm):
+    class Meta:
+        model = Comentario
+        fields = '__all__'
+
+        widgets = {
+            'texto': forms.Textarea
+        }
+
+        labels = {
+            'name':'Nome',
+            'email': 'Email de contacto',
+            'subject': 'Assunto',
+            'message': 'Mensagem',
+        }
+
+
+
+
 
 class ProjetoForm(ModelForm):
     class Meta:

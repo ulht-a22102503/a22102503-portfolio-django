@@ -8,8 +8,8 @@ from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Post, Projeto
-from .forms import PostForm, ProjetoForm, ContactForm
+from .models import Post, Projeto, Comentario
+from .forms import PostForm, ComentarioForm, ProjetoForm, ContactForm
 
 # Create your views here.
 def index_view(request):
@@ -39,7 +39,7 @@ def logout_view(request):
 
 # Blog
 def blog_home_view(request):
-	context = {'posts': Post.objects.all()}
+	context = {'posts': Post.objects.all(), 'comentarios': Comentario.objects.all()}
 	return render(request, 'portfolio/blog/home.html', context)
 
 @login_required
@@ -82,6 +82,17 @@ def blog_dislike_view(request, post_id):
     post.save()
     return HttpResponseRedirect(reverse('portfolio:blog_home'))
 
+def blog_comentario_new_view(request, post_id):
+    form = ComentarioForm(request.POST or None, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect('portfolio:blog_home')
+
+    context = {'form': form}
+
+    return render(request, 'portfolio/blog/new.html', context)
+
+
 
 #Labs 1-4
 def pwlab1_view(request):
@@ -112,6 +123,9 @@ def projetos_new_view(request):
 
     return render(request, 'portfolio/projetos/new.html', context)
 
+#Web Scraping/gráfico
+def web_scraping_view(request):
+    return render(request, 'portfolio/web_scraping.html')
 
 #Contacto
 def contacto_view(request):
@@ -134,7 +148,3 @@ Mensagem:
     form = ContactForm()
     context = {'form': form}
     return render(request, 'portfolio/contacto.html', context)
-
-#Web Scraping/gráfico
-def web_scraping_view(request):
-    return render(request, 'portfolio/web_scraping.html')

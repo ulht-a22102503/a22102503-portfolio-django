@@ -27,6 +27,11 @@
 </a>
 {% endif %}
 </p>
+{% for comentario in post.comentario_set.all %}
+{{ comentario.autor }} at {{ comentario.data }} said:
+<br>{{ comentario.texto }}
+{% endfor %}
+<a href="{% url 'portfolio:blog_comentario_new' post.id %}" class="btn btn-success btn-block">+ Novo Comentário</a>
 {% endfor %}
 {% if user.is_authenticated %}
 <a href="{% url 'portfolio:blog_new' %}" class="btn btn-success btn-block">+ Novo Post</a>
