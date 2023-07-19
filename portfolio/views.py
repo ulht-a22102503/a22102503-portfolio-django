@@ -8,8 +8,8 @@ from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse, HttpResponseRedirect
 
-from .models import Post, Projeto, Comentario
-from .forms import PostForm, ComentarioForm, ProjetoForm, ContactForm
+from .models import Post, Projeto, Tecnologia, Comentario
+from .forms import PostForm, ComentarioForm, ProjetoForm, TecnologiaForm, ContactForm
 
 # Create your views here.
 def index_view(request):
@@ -122,6 +122,22 @@ def projetos_new_view(request):
     context = {'form': form}
 
     return render(request, 'portfolio/projetos/new.html', context)
+
+#Tecnologias
+def tecnologias_home_view(request):
+    context = {'tecnologias': Tecnologia.objects.all()}
+    return render(request, 'portfolio/tecnologias/home.html', context)
+
+@login_required
+def tecnologias_new_view(request):
+    form = TecnologiaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('portfolio:tecnologias_home')
+
+    context = {'form': form}
+
+    return render(request, 'portfolio/tecnologias/new.html', context)
 
 #Web Scraping/gráfico
 def web_scraping_view(request):

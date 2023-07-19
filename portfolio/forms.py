@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Post, Comentario, Projeto, Contacto
+from .models import Post, Comentario, Projeto, Tecnologia, Contacto
 
 #Blog
 class PostForm(ModelForm):
@@ -39,10 +39,6 @@ class ComentarioForm(ModelForm):
             'message': 'Mensagem',
         }
 
-
-
-
-
 class ProjetoForm(ModelForm):
     class Meta:
         model = Projeto
@@ -58,6 +54,21 @@ class ProjetoForm(ModelForm):
             'descricao': 'Descrição',
         }
 
+class TecnologiaForm(ModelForm):
+    class Meta:
+        model = Tecnologia
+        fields = '__all__'
+
+        widgets = {
+            'descricao': forms.Textarea
+        }
+
+        labels = {
+            'name':'Nome',
+            'website': 'Link do projeto',
+            'repo_link': 'Link do repositório',
+            'descricao': 'Descrição',
+        }
 
 class ContactForm(ModelForm):
     class Meta:

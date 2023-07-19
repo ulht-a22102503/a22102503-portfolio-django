@@ -35,16 +35,25 @@ class Contacto(models.Model):
     def __str__(self):
         return self.email
 
-#Projeto
-class Projeto(models.Model):
+#Tecnologia
+class Tecnologia(models.Model):
     name = models.CharField(max_length=150)
-    repo_link = models.URLField(max_length=500)
+    website = models.URLField(max_length=500)
+    source_code = models.URLField(max_length=500)
     descricao = models.CharField(max_length=2000)
 
     def __str__(self):
         return self.name
 
-#Tecnologia
+#Projeto
+class Projeto(models.Model):
+    name = models.CharField(max_length=150)
+    repo_link = models.URLField(max_length=500)
+    descricao = models.CharField(max_length=2000)
+    #tecnologias = models.ForeignKey(Tecnologia, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 
 #Unidade Curricular

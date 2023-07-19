@@ -1,13 +1,27 @@
-{% extends 'portfolio/flex_layout.html' %}
+{% extends 'portfolio/index.html' %}
 
-{% block element_listing %}
-{% for projeto in projetos %}
+{% block extra_head %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'portfolio/css/flex_layout.css' %}">
+{% endblock %}
+
+{% block main %}
+{% if user.is_authenticated %}
 <div>
-    <div><a href="{{projeto.repo_link}}" target="_blank">Repositório <i class="fa fa-code"></i></a></div>
-    <div>
-        <p>{{projeto.name}}</p>
-        <p>{{projeto.descricao}}</p>
-    </div>
+    <a href="{% url 'portfolio:projetos_new' %}" class="btn btn-success btn-block">+ Adicionar</a>
 </div>
-{% endfor %}
+{% endif %}
+
+
+<div class="elements">
+    {% for projeto in projetos %}
+    <div>
+        <div><a href="{{projeto.repo_link}}" target="_blank">Repositório <i class="fa fa-code"></i></a></div>
+        <div>
+            <p>{{projeto.name}}</p>
+            <p>{{projeto.descricao}}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
