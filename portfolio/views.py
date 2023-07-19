@@ -70,6 +70,18 @@ def blog_remove_post_view(request, post_id):
     Post.objects.get(id=post_id).delete()
     return HttpResponseRedirect(reverse('portfolio:blog_home'))
 
+def blog_like_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.like += 1
+    post.save()
+    return HttpResponseRedirect(reverse('portfolio:blog_home'))
+
+def blog_dislike_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.dislike += 1
+    post.save()
+    return HttpResponseRedirect(reverse('portfolio:blog_home'))
+
 
 #Labs 1-4
 def pwlab1_view(request):

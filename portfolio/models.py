@@ -10,9 +10,20 @@ class Post(models.Model):
     descricao = models.CharField(max_length=2000)
     link = models.URLField(max_length=100, blank=True, null=True)
     imagem = models.ImageField(upload_to='blog/', blank=True, null=True)
+    like = models.IntegerField(default=0)
+    dislike = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.titulo[:20]
+        return self.titulo
+
+class Comentario(models.Model):
+    postID = models.ForeignKey(Post, on_delete=models.CASCADE)
+    autor = models.CharField(max_length=20)
+    texto = models.CharField(max_length=2000)
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.postID} {self.data}'
 
 #Contacto
 class Contacto(models.Model):
